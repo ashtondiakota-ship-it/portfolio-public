@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio BTS SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday-pro : un étudiant réseau qui présente son travail à un jury
+   IDEA un plan de réseau / schéma de métro : chaque compétence est une ligne de couleur
+   PICTURE la topologie de son labo (Internet, pare-feu, switch, serveurs) avec des paquets qui circulent
+   COLOUR blanc, encre #10131a, lignes rouge, bleu, ambre, vert, sarcelle, magenta ; nuit #0e1116
+   TYPE Figtree 800 titres + Figtree texte
+   LAYOUT laptop : titre en haut, schéma pleine largeur dessous ; téléphone : titre, schéma vertical, liens */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1116);--ink:light-dark(#10131a,#eef1f6);--mute:light-dark(#4a5160,#a7afbd);--line:light-dark(#d9dde4,#2a303b);--card:light-dark(#f4f6f9,#161b23);--red:#e6261f;--blue:light-dark(#0a5cff,#4d8bff);--amber:#ffb400;--green:#00a05a;--teal:#00a3a3;--mag:#d6247a}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif;overflow-x:clip}
+a{color:var(--blue)}
+img{max-width:100%}
+.band{padding-block:clamp(28px,4vw,64px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+h1,h2,h3{line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,5vw,52px);font-weight:800}
+h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;margin-bottom:20px}
+h3{font-size:20px;font-weight:700;line-height:1.2}
+p{margin:0 0 12px;max-width:68ch}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:16px;padding:10px max(5vw,16px);max-width:none}
+.logo{font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap}
+.links{display:flex;gap:4px;overflow-x:auto;margin-left:auto}
+.links a{flex:none;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--ink);font-weight:500}
+.links a:hover,.links a:focus-visible{background:var(--card)}
+.note{background:var(--amber);color:#10131a;font-size:14px;padding:8px max(5vw,16px);text-align:center}
+.hero{padding-bottom:12px}
+.hero .top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 48px;align-items:end}
+.role{font-size:20px;color:var(--mute);margin-top:12px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
+.btn.main{background:var(--ink);color:var(--bg)}
+.btn:focus-visible,.chip:focus-visible,.links a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;margin-top:28px}
+figure{margin:0}
+figcaption{font-size:15px;color:var(--mute);margin-bottom:8px}
+figcaption b{color:var(--ink)}
+.fig{position:relative;min-height:380px;border-radius:16px;background:var(--card)}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+svg text{font-family:Figtree,system-ui,sans-serif;paint-order:stroke;stroke:var(--card);stroke-width:4px}
+.pkt{stroke-dasharray:3 22;animation:flow 1.6s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-25}}
+@media (prefers-reduced-motion:reduce){.pkt{animation:none;display:none}html{scroll-behavior:auto}}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 56px}
+.time{list-style:none;margin:0;padding:0;border-left:4px solid var(--blue)}
+.time li{position:relative;padding:0 0 18px 22px}
+.time li::before{content:"";position:absolute;left:-11px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:4px solid var(--blue)}
+.time b{display:block}
+.time span{color:var(--mute);font-size:15px}
+.alt{background:var(--card)}
+.comps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px}
+.comp{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.dot{flex:none;width:18px;height:18px;border-radius:50%;margin-top:3px}
+.comp b{display:block;line-height:1.3}
+.comp span{font-size:14px;color:var(--mute)}
+.tech{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;margin-top:32px}
+.tech h3{margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.tags li{padding:4px 10px;border-radius:6px;background:var(--bg);border:1px solid var(--line);font-size:14px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{min-height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:500 15px Figtree,system-ui,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.chip[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.chip i{width:12px;height:12px;border-radius:50%}
+.real{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:16px}
+.grp{margin-bottom:32px}
+.gh{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.gh .dot{margin-top:0}
+.card{display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.card .ctx{font-size:14px;color:var(--mute)}
+.card .line{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.card .line span{display:inline-flex;align-items:center;gap:6px}
+.card .line i{width:10px;height:10px;border-radius:50%}
+.card .doc{margin-top:auto;font-weight:700}
+.docv{position:fixed;inset:0;z-index:20;background:color-mix(in srgb,var(--ink) 45%,transparent);overflow-y:auto;padding:24px 16px}
+.docv[hidden]{display:none}
+.docbox{position:relative;max-width:820px;margin:0 auto;background:var(--bg);border-radius:16px;padding:clamp(20px,4vw,40px)}
+#docc>.ctx:first-child{display:block;padding-right:96px;min-height:44px}
+.docbox h2{margin:6px 0 12px}
+.docbox h3{margin:24px 0 8px}
+.docbox .line{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.docbox .line span{display:inline-flex;align-items:center;gap:6px}
+.docbox .line i{width:10px;height:10px;border-radius:50%}
+.close{position:absolute;top:16px;right:16px;min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);font:700 15px Figtree,system-ui,sans-serif;cursor:pointer}
+.steps{margin:0;padding-left:22px}
+.steps li{margin-bottom:8px;max-width:68ch}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+.cap{margin:0}
+.ph{display:grid;place-items:center;aspect-ratio:16/10;border:2px dashed var(--line);border-radius:10px;color:var(--mute);font-size:14px;background:var(--card)}
+.cap figcaption{font-size:14px;margin-top:6px}
+.empty{color:var(--mute)}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.stage{padding:22px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.alt-main{border:3px solid var(--blue)}
+.stage .when{color:var(--mute);font-size:15px;margin:4px 0 12px}
+.stage ul{margin:0;padding-left:20px}
+.synth{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px 48px;align-items:center}
+.tscroll{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:14px}
+.tscroll:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.tsyn{border-collapse:collapse;width:100%;min-width:860px;font-size:15px}
+.tsyn th,.tsyn td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+.tsyn thead th{background:var(--card);font-weight:700;line-height:1.2}
+.tsyn thead th:first-child,.tsyn tbody th{text-align:left}
+.tsyn tbody th{font-weight:400;min-width:300px}
+.tsyn thead th i{display:block;width:14px;height:14px;border-radius:50%;margin:0 auto 6px}
+.tsyn tbody th a{font-weight:700;color:var(--ink)}
+.tsyn tbody th span{display:block;font-size:13px;color:var(--mute);margin-top:2px}
+.tsyn td i{display:inline-block;width:16px;height:16px;border-radius:50%}
+.tsyn tfoot th,.tsyn tfoot td{background:var(--card);font-weight:800;border-bottom:0}
+.tsyn tfoot th{text-align:left}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.src{list-style:none;margin:12px 0 0;padding:0}
+.src li{padding:10px 0;border-top:1px solid var(--line)}
+.certs{list-style:none;margin:0;padding:0}
+.certs li{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--line)}
+.certs em{font-style:normal;font-size:14px;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.ok{background:color-mix(in srgb,var(--green) 18%,transparent)}
+.wip{background:color-mix(in srgb,var(--amber) 28%,transparent)}
+.contact{background:var(--ink);color:var(--bg)}
+.contact a{color:var(--bg)}
+.contact .btn{border-color:var(--bg);color:var(--bg)}
+.contact .btn.main{background:var(--bg);color:var(--ink)}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+footer{padding:20px max(5vw,16px);font-size:14px;color:var(--mute);text-align:center}
+@media(max-width:900px){.hero .top,.synth{grid-template-columns:minmax(0,1fr)}.cta{justify-content:flex-start}}
+@media(max-width:600px){.two{grid-template-columns:minmax(0,1fr)}.logo{display:none}.links{margin-left:0}}
+</style>
+</head>
+<body>
+<nav aria-label="Navigation principale"><div class="wrap">
+  <a class="logo" href="#accueil">Ashton Diakota</a>
+  <div class="links">
+    <a href="#profil">Profil</a><a href="#competences">Compétences</a><a href="#realisations">Réalisations</a><a href="#stages">Expériences</a><a href="#veille">Veille</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<header id="accueil" class="band hero"><div class="wrap">
+  <div class="top">
+    <div>
+      <h1>Ashton Diakota, futur technicien systèmes et réseaux</h1>
+      <p class="role">2e année de BTS SIO option SISR · ENSITECH, Montigny-le-Bretonneux · Alternant à la mairie des Clayes-sous-Bois</p>
+    </div>
+    <div class="cta">
+      <a class="btn main" href="#realisations">Voir mes réalisations</a>
+      <a class="btn" href="#synthese">Tableau de synthèse</a>
+    </div>
+  </div>
+  <div class="figs">
+    <figure>
+      <figcaption><b>En alternance</b> · les services sur lesquels je travaille à la mairie</figcaption>
+      <div class="fig" id="topo" role="img" aria-label="Schéma de l'alternance : Internet, pare-feu, switch, Active Directory, GLPI, Zabbix, postes et imprimantes"><svg></svg></div>
+    </figure>
+    <figure>
+      <figcaption><b>À l'école</b> · mon labo de TP à ENSITECH, sous VMware et Packet Tracer</figcaption>
+      <div class="fig" id="topo2" role="img" aria-label="Schéma du labo d'école : Internet, pare-feu pfSense, réseau virtuel VMware, Windows Server avec AD, DNS et DHCP, GLPI et OCS, portfolio, client Windows"><svg></svg></div>
+    </figure>
+  </div>
+</div></header>
+
+<section id="profil" class="band"><div class="wrap two">
+  <div>
+    <h2>Profil</h2>
+    <p>Je m'appelle Ashton Diakota. Je suis en 2e année de BTS SIO option SISR (solutions d'infrastructure, systèmes et réseaux) à ENSITECH, à Montigny-le-Bretonneux, en alternance au service informatique de la mairie des Clayes-sous-Bois.</p>
+    <p>Mes stages chez Engie, aux Restos du Cœur, chez Chastagner Location et chez XEFI m'ont fait découvrir l'informatique dans des structures très différentes : grand groupe, association, PME et prestataire informatique.</p>
+  </div>
+  <div>
+    <h3 style="margin-bottom:16px">Parcours</h3>
+    <ol class="time">
+      <li><b>BTS SIO option SISR, en alternance</b><span>ENSITECH, Montigny-le-Bretonneux · 2e année en cours</span></li>
+      <li><b>Alternance</b><span>Mairie des Clayes-sous-Bois, service informatique</span></li>
+      <li><b>Bac pro Systèmes numériques</b><span>Lycée Jean-Moulin, Le Chesnay · mention bien · 2025</span></li>
+    </ol>
+  </div>
+</div></section>
+
+<section id="competences" class="band alt"><div class="wrap">
+  <h2>Compétences du bloc 1</h2>
+  <p>Les six compétences du référentiel BTS SIO. Chaque couleur se retrouve sur les réalisations qui la mettent en œuvre.</p>
+  <div class="comps" id="comps"></div>
+  <div class="tech">
+    <div><h3>Systèmes</h3><ul class="tags"><li>Windows 10 / 11</li><li>Windows Server 2022</li><li>Windows 11 Entreprise</li><li>Debian 13</li><li>Linux (Ubuntu)</li><li>Active Directory</li><li>GPO</li><li>Droits sur les dossiers partagés via les groupes</li><li>PowerShell</li><li>VMware ESXi</li><li>VMware Workstation</li><li>VirtualBox</li></ul></div>
+    <div><h3>Réseaux</h3><ul class="tags"><li>TCP/IP</li><li>LAN / WAN</li><li>VLAN</li><li>Adressage IPv4 · VLSM</li><li>Routage statique</li><li>RIP</li><li>Switching</li><li>DHCP (relais, basculement)</li><li>DNS</li><li>pfSense</li><li>Wi-Fi</li><li>SNMP</li><li>SSH</li></ul></div>
+    <div><h3>Supervision</h3><ul class="tags"><li>Zabbix</li><li>MySQL</li><li>Apache + PHP (interface web Zabbix)</li><li>Découverte automatique des équipements</li><li>Supervision d'infrastructures</li></ul></div>
+    <div><h3>Support informatique</h3><ul class="tags"><li>Préparation et déploiement de postes</li><li>Installation et configuration de logiciels</li><li>Diagnostic et résolution d'incidents</li><li>Assistance utilisateurs</li><li>Imprimantes réseau</li><li>GLPI</li></ul></div>
+    <div><h3>Méthode</h3><ul class="tags"><li>Qualifier une demande</li><li>Compte rendu client</li><li>Plan de tests et recette</li><li>Documentation technique</li></ul></div>
+    <div><h3>Langues</h3><ul class="tags"><li>Français</li><li>Anglais : intermédiaire</li></ul></div>
+  </div>
+</div></section>
+
+<section id="realisations" class="band"><div class="wrap">
+  <h2>Réalisations professionnelles</h2>
+  <div class="filters" id="filters" role="group" aria-label="Filtrer par compétence"></div>
+  <div id="real"></div>
+</div></section>
+
+<section id="stages" class="band alt"><div class="wrap">
+  <h2>Alternance et stages</h2>
+  <div class="stages">
+    <article class="stage alt-main">
+      <h3>Mairie des Clayes-sous-Bois, service informatique</h3>
+      <p class="when">Alternance · BTS SIO SISR · en cours</p>
+      <ul>
+        <li>Mise en place d'un serveur de supervision Zabbix</li>
+        <li>Création des utilisateurs dans l'Active Directory et préparation de leur poste</li>
+        <li>Gestion et dépannage des imprimantes</li>
+        <li>Installation de box Netiful dans les écoles</li>
+        <li>Suivi du parc et des demandes dans GLPI</li>
+      </ul>
+    </article>
+    <article class="stage">
+      <h3>Restos du Cœur, service informatique, Les Clayes-sous-Bois</h3>
+      <p class="when">Stage de Terminale · décembre 2024 – janvier 2025</p>
+      <ul><li>Tri des pièces détachées de PC</li><li>Tri et sélection des PC récents à envoyer vers les différents sites des Restos du Cœur</li></ul>
+    </article>
+    <article class="stage">
+      <h3>Chastagner Location, Trappes</h3>
+      <p class="when">Stage · mai – juin 2024</p>
+      <ul><li>Rédaction d'une documentation sur les monte-charges</li></ul>
+    </article>
+    <article class="stage">
+      <h3>XEFI, Coignières</h3>
+      <p class="when">Stage · 2 semaines · avril 2024</p>
+      <ul><li>Démontage de PC</li><li>Remplacement de barrettes de mémoire RAM et de ventilateurs</li></ul>
+    </article>
+    <article class="stage">
+      <h3>Engie, La Défense</h3>
+      <p class="when">Stage · mai – juin 2023</p>
+      <ul><li>Découverte de la GTB (gestion technique du bâtiment), qui supervise les équipements à distance</li><li>Relevés de compteurs sur tablette dans la GMAO (gestion de la maintenance assistée par ordinateur)</li><li>Recherche de problèmes d'alimentation et de connecteurs, dans le respect des règles de sécurité électrique (vérification d'absence de tension)</li><li>Participation aux réunions hebdomadaires sur les problèmes rencontrés et à anticiper</li></ul>
+    </article>
+  </div>
+</div></section>
+
+<section id="synthese" class="band"><div class="wrap">
+  <div>
+    <h2>Tableau de synthèse</h2>
+    <p>Le tableau de synthèse de l'épreuve E5 récapitule mes réalisations, leur contexte et les compétences qu'elles couvrent.</p>
+  </div>
+  <div><a class="btn main" href="tableau-synthese-e5.pdf" download>Télécharger le tableau de synthèse (PDF)</a></div>
+
+</div></section>
+
+<section id="veille" class="band alt"><div class="wrap two">
+  <div>
+    <h2>Veille technologique</h2>
+    <h3>La cybersécurité des réseaux des collectivités</h3>
+    <p style="margin-top:10px">Les mairies et les collectivités sont régulièrement visées par des cyberattaques, en particulier par des rançongiciels. Je suis l'actualité de ces attaques, la façon dont elles entrent dans un réseau (hameçonnage, accès distants mal protégés, failles non corrigées), et les protections qu'un service informatique peut mettre en place : segmentation en VLAN, supervision, sauvegardes, mises à jour et sensibilisation des agents.</p>
+    <p>Ce sujet est directement lié à mon alternance à la mairie et à mon projet de supervision Zabbix.</p>
+  </div>
+  <div>
+    <h3>Mes sources</h3>
+    <ul class="src">
+      <li><a href="https://www.cert.ssi.gouv.fr/">CERT-FR (ANSSI)</a>, alertes et bulletins de sécurité</li>
+      <li><a href="https://www.cybermalveillance.gouv.fr/">Cybermalveillance.gouv.fr</a>, actualités et conseils, notamment pour les collectivités</li>
+      <li><a href="https://www.lemagit.fr/">LeMagIT</a>, actualité de la cybersécurité en entreprise</li>
+      <li><a href="https://www.it-connect.fr/">IT-Connect</a>, tutoriels et actualités systèmes, réseaux et sécurité</li>
+    </ul>
+    <h3 style="margin-top:28px">Certifications</h3>
+    <ul class="certs" style="margin-top:12px">
+      <li><span>Certification Pix (compétences numériques)</span><em class="ok">Obtenue</em></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="contact" class="band contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p>Actuellement en alternance à la mairie des Clayes-sous-Bois, ouvert aux échanges sur la suite de mon parcours.</p>
+  <p>ashtondiakota@gmail.com</p>
+  <div class="row">
+    <a class="btn main" href="mailto:ashtondiakota@gmail.com">M'écrire</a>
+    <a class="btn" href="https://www.linkedin.com/in/ashton-diakota-062732383">LinkedIn</a>
+    <a class="btn" href="https://github.com/ashtondiakota-ship-it">GitHub</a>
+  </div>
+</div></section>
+<div id="docv" class="docv" hidden><div class="docbox" role="dialog" aria-modal="true" aria-labelledby="doct"><button class="close" id="docx" aria-label="Fermer la documentation">Fermer</button><div id="docc"></div></div></div>
+<footer>Ashton Diakota · Portfolio BTS SIO SISR · ENSITECH · 2026</footer>
+
+<script>
+{
+const C=[
+ {n:"Gérer le patrimoine informatique",s:"Inventaire, sauvegardes, licences, documentation",c:"var(--red)"},
+ {n:"Répondre aux incidents et aux demandes d'assistance",s:"Tickets, diagnostic, résolution, suivi",c:"var(--blue)"},
+ {n:"Développer la présence en ligne de l'organisation",s:"Site, réseaux sociaux, image numérique",c:"var(--amber)"},
+ {n:"Travailler en mode projet",s:"Planification, cahier des charges, compte rendu",c:"var(--green)"},
+ {n:"Mettre à disposition un service informatique",s:"Déployer, tester, accompagner les utilisateurs",c:"var(--teal)"},
+ {n:"Organiser son développement professionnel",s:"Veille, portfolio, certifications",c:"var(--mag)"}
+];
+const short=["Patrimoine","Incidents","Présence en ligne","Mode projet","Service","Dév. pro"];
+const R=[
+ {p:3,id:"zabbix",t:"Mise en place d'un serveur de supervision Zabbix",x:"Alternance · Mairie des Clayes-sous-Bois · en cours",d:"Projet demandé par mon responsable : le service découvrait trop tard des pannes simples qui auraient pu être anticipées. Installation de Zabbix sur un serveur de la mairie en suivant la documentation, configuration et adressage IP du serveur, base de données MySQL mise en place avec un collègue développeur, puis découverte des équipements en SNMP à partir de leurs OID. La principale difficulté a été de comprendre le fonctionnement des OID. Les switchs et les imprimantes remontent déjà dans Zabbix avec leur nom DNS ; les PC sont la prochaine étape. Échéance fixée quelques semaines avant mes examens, avec un suivi régulier par mes collègues.",k:[4,1,3,0],o:"Zabbix, MySQL, SNMP, OID, DNS"},
+ {p:1,id:"tickets",t:"Traitement des tickets et résolution d'incidents",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Prise en charge et suivi des demandes des agents dans GLPI. Exemples : un agent qui n\'accédait plus au logiciel de son service (grâce à la documentation du plan d\'adressage et à un ipconfig /all, le poste s\'est révélé connecté en Wi-Fi dans le VLAN d\'un autre service, puis il a été remis dans le bon VLAN), un scanner d'imprimante bloqué remis en service, un écran qui s'éteignait et se rallumait réglé en passant sa fréquence à 60 Hz.",k:[1,0],o:"GLPI, ipconfig, VLAN, Wi-Fi, Windows"},
+ {p:1,id:"comptes",t:"Création des comptes utilisateurs et préparation des postes",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Création des nouveaux utilisateurs dans la bonne unité d'organisation, ajout aux groupes qui donnent accès aux dossiers partagés du service, puis préparation et installation de leur poste de travail.",k:[1,4,0],o:"Active Directory, groupes, partages, Windows"},
+ {p:1,id:"messagerie",t:"Gestion des comptes de messagerie Microsoft",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Désactivation des comptes de messagerie des agents qui quittent la mairie, et dépannage d'un service qui avait besoin d'un mail reçu dans la boîte d'un agent absent.",k:[1,0],o:"Microsoft 365, messagerie"},
+ {p:1,id:"imprimantes",t:"Gestion du parc d'imprimantes",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Installation, configuration et dépannage des imprimantes des services de la mairie.",k:[1,0],o:"Imprimantes réseau"},
+ {p:4,id:"livraison",t:"Livraison des postes et accompagnement des agents",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Avant la livraison, tests des applications métiers et des sites web utilisés par l'agent, et vérification de chaque étape de la procédure de préparation. À la remise du poste, explication de l'utilisation de la station d'accueil et de la connexion au VPN, puis vérification avec l'agent que toutes ses applications métiers fonctionnent.",k:[4,1],o:"Windows, VPN, applications métiers"},
+ {p:4,id:"procedure-ecoles",t:"Rédaction de la procédure de préparation des PC des écoles",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Rédaction d'une nouvelle procédure dédiée à la préparation des PC des écoles, distincte de celle utilisée pour les postes de la mairie, afin que chaque technicien du service puisse les préparer de la même façon.",k:[4,0],o:"Documentation technique"},
+ {p:4,id:"netiful",t:"Installation de box Netiful dans les écoles",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Installation et mise en service de box Netiful dans deux écoles de la commune, puis vérification du bon fonctionnement du filtrage Internet.",k:[4,3],o:"Box Netiful, filtrage web"},
+ {p:0,id:"inventaire",t:"Inventaire et gestion du parc informatique",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Ajout des nouveaux PC et imprimantes dans l'inventaire GLPI et dans les bonnes unités d'organisation de l'Active Directory. Application des procédures écrites de la mairie : étiquetage des PC portables, remise avec leur station d'accueil.",k:[0,1],o:"GLPI, Active Directory"},
+ {p:0,id:"regles",t:"Application des règles de sécurité et d'utilisation",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Respect et application des stratégies de groupe (GPO) qui limitent les accès entre services, et de la politique de mots de passe de la mairie lors de la création des comptes.",k:[0,4],o:"GPO, Active Directory"},
+ {p:0,id:"sauvegarde",t:"Sauvegarde et restauration des données",x:"Alternance · Mairie des Clayes-sous-Bois",d:"Les données des agents sont stockées sur le réseau : lorsqu'un agent reçoit un nouveau poste, il les retrouve dès que son compte est placé dans la bonne unité d'organisation. En cas de perte de données, restauration du poste de l'agent à partir du dernier point de restauration créé par le service informatique.",k:[0,1],o:"Active Directory, stockage réseau, points de restauration Windows"},
+ {p:2,id:"portfolio",t:"Mon portfolio en ligne",x:"Projet personnel",d:"Conception et mise en ligne de ce site pour présenter mon parcours, mes expériences et mes réalisations.",k:[2,5],o:"HTML, CSS, JavaScript"},
+ {p:5,id:"veille",t:"Veille technologique et certification",x:"BTS SIO · en continu",d:"Veille sur la cybersécurité des réseaux des collectivités, en lien avec mon alternance à la mairie. Certification Pix obtenue. Le détail est dans la partie Veille ci-dessous.",k:[5],o:"CERT-FR, Cybermalveillance.gouv.fr, LeMagIT, IT-Connect"},
+];
+const D={
+zabbix:{c:"Le service informatique découvrait trop tard des pannes simples qui auraient pu être anticipées. Mon responsable m'a demandé de mettre en place un outil de supervision.",o:"Surveiller en continu les équipements du réseau de la mairie pour repérer une panne avant qu'elle ne bloque les agents.",s:["Installation de Zabbix sur un serveur de la mairie, en suivant une documentation d'installation.","Configuration du serveur et attribution de son adresse IP.","Mise en place de la base de données MySQL avec un collègue développeur.","Ajout des équipements en SNMP, à partir de leurs OID.","Vérification de la remontée des switchs et des imprimantes, identifiés par leur nom DNS.","Prochaine étape : superviser les PC."],d:"Comprendre le fonctionnement des OID : chaque information d'un équipement (nom, état d'un port, niveau de toner…) a une adresse unique qu'il faut indiquer à Zabbix.",r:"Les switchs et les imprimantes sont supervisés. L'échéance est fixée quelques semaines avant mes examens, avec un suivi par mes collègues.",k:["Tableau de bord Zabbix","Liste des hôtes supervisés (switchs, imprimantes)","Configuration d'un élément SNMP avec son OID"]},
+tickets:{c:"Les agents de la mairie font leurs demandes d'assistance par ticket dans GLPI.",o:"Prendre en charge les demandes, trouver la cause du problème et rétablir le service.",s:["Wi-Fi : un agent n'accédait plus au logiciel de son service. J'ai d'abord vérifié l'accès au logiciel, puis consulté la documentation du plan d'adressage : les adresses de son service commencent par une plage précise.","Avec ipconfig /all, j'ai constaté que son poste avait une adresse d'un autre VLAN, celui d'un autre service. Le poste a ensuite été remis dans le bon VLAN.","Scanner : le scanner d'une imprimante ne fonctionnait plus ; un redémarrage a rétabli le service.","Écran : un écran s'éteignait et se rallumait ; j'ai réglé sa fréquence de rafraîchissement sur 60 Hz."],r:"Les trois incidents ont été résolus et les agents ont pu reprendre leur travail.",k:["Ticket GLPI traité (nom de l'agent masqué)","Résultat de ipconfig /all (adresses masquées)","Réglage de la fréquence d'affichage à 60 Hz"]},
+comptes:{c:"À chaque arrivée d'un agent, le service informatique crée son compte et prépare son poste.",o:"Que le nouvel agent ait, dès son premier jour, un compte, les bons accès et un poste prêt.",s:["Création du compte dans la bonne unité d'organisation (OU) de l'Active Directory.","Ajout de l'utilisateur aux groupes de son service : ce sont les groupes qui donnent accès aux dossiers partagés.","Préparation du poste de travail de l'agent.","Installation du poste au bureau de l'agent."],r:"L'agent retrouve ses accès et ses dossiers partagés dès sa première connexion.",k:["Console « Utilisateurs et ordinateurs Active Directory » avec l'OU (noms masqués)","Onglet « Membre de » d'un utilisateur"]},
+messagerie:{c:"Les agents de la mairie ont des boîtes mail Microsoft.",o:"Gérer le cycle de vie des comptes de messagerie et dépanner les services.",s:["Désactivation des comptes de messagerie des agents qui quittent la mairie.","Récupération d'un mail reçu dans la boîte d'un agent absent, pour un collègue de son service qui en avait besoin."],r:"Les comptes inutilisés sont fermés et les services ne sont pas bloqués par l'absence d'un agent.",k:["Centre d'administration Microsoft 365 (noms masqués)"]},
+imprimantes:{c:"La mairie compte de nombreuses imprimantes réseau réparties dans ses services.",o:"Assurer leur bon fonctionnement au quotidien.",s:["Installation et configuration des imprimantes.","Dépannage des imprimantes en panne.","Ajout des imprimantes dans l'inventaire et dans la supervision Zabbix."],r:"Les imprimantes sont suivies dans l'inventaire et remontent dans Zabbix.",k:["Une imprimante dans la liste des hôtes Zabbix"]},
+livraison:{c:"Un poste n'est utile à l'agent que si tout fonctionne le jour de la livraison.",o:"Livrer un poste testé et s'assurer que l'agent sait l'utiliser.",s:["Avant la livraison : test des applications métiers et des sites web utilisés par l'agent.","Vérification de chaque étape de la procédure de préparation, pour ne rien oublier.","À la remise : explication de l'utilisation de la station d'accueil.","Explication de la connexion au VPN.","Vérification avec l'agent que toutes ses applications métiers fonctionnent."],r:"L'agent repart avec un poste fonctionnel et sait s'en servir.",k:["Extrait de la check-list de la procédure de préparation"]},
+"procedure-ecoles":{c:"Les PC des écoles ne se préparent pas de la même façon que ceux de la mairie.",o:"Disposer d'une procédure propre aux écoles, pour que chaque technicien prépare les PC de la même manière.",s:["Repérage des différences entre la préparation des PC des écoles et celle des PC de la mairie.","Rédaction de la nouvelle procédure, étape par étape."],r:"Le service dispose d'une procédure dédiée aux PC des écoles.",k:["Première page de la procédure"]},
+netiful:{c:"Les écoles de la commune doivent disposer d'un accès Internet filtré.",o:"Installer les box Netiful et vérifier que le filtrage fonctionne.",s:["Installation et mise en service d'une box Netiful dans deux écoles.","Vérification du bon fonctionnement du filtrage Internet."],r:"Les deux écoles ont un accès Internet filtré et fonctionnel.",k:["Box installée (photo)","Page de blocage affichée par le filtrage"]},
+inventaire:{c:"Le service informatique doit savoir à tout moment quel matériel existe, où il se trouve et à qui il est attribué.",o:"Tenir l'inventaire à jour et appliquer les règles de la mairie.",s:["Ajout des nouveaux PC et des imprimantes dans l'inventaire GLPI.","Placement des ordinateurs dans la bonne unité d'organisation de l'Active Directory.","Application des procédures écrites : étiquetage des PC portables, remise avec leur station d'accueil."],r:"Le parc est inventorié et chaque matériel est identifiable.",k:["Fiche d'un ordinateur dans GLPI","Étiquette d'un PC portable (photo)"]},
+regles:{c:"Chaque service de la mairie doit accéder uniquement à ce qui le concerne.",o:"Appliquer les règles de sécurité et d'utilisation de la mairie.",s:["Respect et application des stratégies de groupe (GPO) qui limitent les accès entre services.","Application de la politique de mots de passe de la mairie lors de la création des comptes."],r:"Les accès sont cloisonnés par service et les comptes respectent la politique de sécurité.",k:["Console de gestion des stratégies de groupe (noms masqués)"]},
+sauvegarde:{c:"Un agent ne doit pas perdre son travail lors d'un changement de poste ou d'un problème.",o:"Garantir la récupération des données des agents.",s:["Les données des agents sont stockées sur le réseau : sur un nouveau poste, l'agent les retrouve dès que son compte est dans la bonne OU.","En cas de perte de données, le poste de l'agent est restauré à partir du dernier point de restauration créé par le service informatique."],r:"Les agents retrouvent leurs données sans intervention lourde.",k:["Fenêtre des points de restauration Windows"]},
+portfolio:{c:"Le BTS SIO demande de présenter ses compétences dans un portfolio en ligne.",o:"Présenter mon parcours, mes expériences et mes réalisations de façon claire, sur ordinateur comme sur téléphone.",s:["Conception de la structure du site : profil, compétences, réalisations, expériences, veille, contact.","Mise en ligne du site.","Prochaine étape : ajout du lien sur LinkedIn."],r:"Le portfolio est en ligne et sert de support à mon oral.",k:["Le site sur ordinateur","Le site sur téléphone"]},
+veille:{c:"Un technicien doit se tenir informé des évolutions de son métier, en particulier en sécurité.",o:"Suivre l'actualité de la cybersécurité des réseaux des collectivités.",s:["Choix d'un sujet lié à mon alternance : la cybersécurité des réseaux des collectivités.","Suivi régulier des sources : CERT-FR, Cybermalveillance.gouv.fr, LeMagIT, IT-Connect.","Obtention de la certification Pix."],r:"Une veille en lien direct avec mon travail à la mairie.",k:["Attestation de certification Pix"]}
+};
+const $=id=>document.getElementById(id);
+$("comps").innerHTML=C.map(c=>`<div class="comp"><i class="dot" style="background:${c.c}"></i><div><b>${c.n}</b><span>${c.s}</span></div></div>`).join("");
+let f=-1;
+const drawF=()=>{$("filters").innerHTML=`<button class="chip" id="f-all" aria-pressed="${f<0}" data-i="-1">Toutes</button>`+short.map((s,i)=>`<button class="chip" id="f-${i}" aria-pressed="${f===i}" data-i="${i}"><i style="background:${C[i].c}"></i>${s}</button>`).join("")};
+const cardH=r=>{const k=[...r.k].sort((x,y)=>x-y);return `<article class="card"><span class="ctx">${r.x}</span><h3>${r.t}</h3><p>${r.d}</p><div class="line">${k.map(i=>`<span><i style="background:${C[i].c}"></i>${short[i]}</span>`).join("")}</div><span class="ctx">Outils : ${r.o}</span><a class="doc" href="#doc-${r.id}">Voir la documentation</a></article>`};
+const drawR=()=>{
+ if(f>=0){const l=R.filter(r=>r.k.includes(f));$("real").innerHTML=`<div class="real">${l.map(cardH).join("")}</div>`;return}
+ $("real").innerHTML=C.map((c,i)=>{const l=R.filter(r=>r.p===i);return `<div class="grp"><h3 class="gh"><i class="dot" style="background:${c.c}"></i>${i+1}. ${c.n}</h3><div class="real">${l.map(cardH).join("")}</div></div>`}).join("");
+};
+$("filters").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;f=+b.dataset.i;drawF();drawR()});
+drawF();drawR();
+
+const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const dv=$("docv"),dc=$("docc");let back="#realisations";
+const showDoc=()=>{const m=location.hash.match(/^#doc-(.+)$/);const r=m&&R.find(x=>x.id===m[1]);if(!r){dv.hidden=true;document.body.style.overflow="";return}
+ const d=D[r.id],k=[...r.k].sort((x,y)=>x-y);
+ dc.innerHTML=`<span class="ctx">${esc(r.x)}</span><h2 id="doct">${esc(r.t)}</h2><div class="line">${k.map(i=>`<span><i style="background:${C[i].c}"></i>${C[i].n}</span>`).join("")}</div>
+ <h3>Contexte</h3><p>${esc(d.c)}</p><h3>Objectif</h3><p>${esc(d.o)}</p>
+ <h3>Étapes</h3><ol class="steps">${d.s.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
+ ${d.d?`<h3>Difficulté rencontrée</h3><p>${esc(d.d)}</p>`:""}
+ <h3>Résultat</h3><p>${esc(d.r)}</p><p class="ctx">Outils : ${esc(r.o)}</p>
+ <h3>Captures</h3><div class="caps">${d.k.map(x=>`<figure class="cap"><div class="ph">Capture à ajouter</div><figcaption>${esc(x)}</figcaption></figure>`).join("")}</div>`;
+ dv.hidden=false;document.body.style.overflow="hidden";dv.scrollTop=0;$("docx").focus();};
+const closeDoc=()=>{history.pushState(null,"",back);showDoc();document.getElementById("realisations").scrollIntoView()};
+$("docx").addEventListener("click",closeDoc);
+dv.addEventListener("click",e=>{if(e.target===dv)closeDoc()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!dv.hidden)closeDoc()});
+window.addEventListener("hashchange",showDoc);showDoc();
+const N1=[
+ {id:"net",a:"Internet",b:"Box FAI"},
+ {id:"fw",a:"Pare-feu",b:"Accès réseau"},
+ {id:"sw",a:"Switch",b:"Réseau mairie"},
+ {id:"ad",a:"Active Directory",b:"Comptes, OU",c:"var(--teal)"},
+ {id:"glpi",a:"GLPI",b:"Parc, tickets",c:"var(--blue)"},
+ {id:"zbx",a:"Zabbix",b:"Supervision",c:"var(--red)"},
+ {id:"pc",a:"Postes",b:"et imprimantes",c:"var(--green)"}
+];
+const N2=[
+ {id:"net",a:"Internet",b:"Accès extérieur"},
+ {id:"fw",a:"pfSense",b:"Pare-feu, routage"},
+ {id:"sw",a:"Réseau virtuel",b:"VMware"},
+ {id:"ad",a:"Windows Server",b:"AD, DNS, DHCP",c:"var(--teal)"},
+ {id:"glpi",a:"GLPI + OCS",b:"Inventaire, tickets",c:"var(--blue)"},
+ {id:"zbx",a:"Portfolio",b:"Projet web",c:"var(--amber)"},
+ {id:"pc",a:"Client Windows",b:"Poste de test",c:"var(--green)"}
+];
+const mk=(box,N)=>{const s=box.querySelector("svg");return()=>{
+ const W=s.clientWidth;if(!W)return;
+ const narrow=W<760,nh=58,P={};
+ const nw=narrow?Math.min(160,(W-32-36)/2):150;
+ const H=narrow?540:380;
+ if(box.style.height!==H+"px")box.style.height=H+"px";
+ if(!narrow){
+  const step=(W-48-nw)/3;
+  ["net","fw","sw"].forEach((k,i)=>P[k]={x:24+i*step,y:H/2-nh/2});
+  const rx=24+3*step,gap=(H-48-4*nh)/3;
+  ["ad","glpi","zbx","pc"].forEach((k,i)=>P[k]={x:rx,y:24+i*(nh+gap)});
+ }else{
+  const cx=(W-nw)/2,lx=16,rx=W-16-nw;
+  P.net={x:cx,y:20};P.fw={x:cx,y:120};P.sw={x:cx,y:220};
+  P.ad={x:lx,y:350};P.glpi={x:rx,y:350};P.zbx={x:lx,y:460};P.pc={x:rx,y:460};
+ }
+ const mid=k=>({x:P[k].x+nw/2,y:P[k].y+nh/2});
+ const paths=[];
+ const L=(a,b)=>{const A=mid(a),B=mid(b);return narrow?`M${A.x} ${P[a].y+nh}L${B.x} ${P[b].y}`:`M${P[a].x+nw} ${A.y}L${P[b].x} ${B.y}`};
+ paths.push({d:L("net","fw"),c:"var(--ink)"},{d:L("fw","sw"),c:"var(--ink)"});
+ ["ad","glpi","zbx","pc"].forEach(k=>{
+  const n=N.find(x=>x.id===k),S=mid("sw"),T=mid(k);let d;
+  if(!narrow){const sx=P.sw.x+nw,ex=(sx+P[k].x)/2;d=`M${sx} ${S.y}L${ex} ${S.y}L${ex} ${T.y}L${P[k].x} ${T.y}`;}
+  else{const sy=P.sw.y+nh,left=P[k].x<S.x,ex=left?P[k].x+nw:P[k].x;d=`M${S.x} ${sy}L${S.x} ${T.y}L${ex} ${T.y}`;}
+  paths.push({d,c:n.c});
+ });
+ const g=paths.map(p=>`<path d="${p.d}" fill="none" stroke="${p.c}" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path class="pkt" d="${p.d}" fill="none" stroke="var(--bg)" stroke-width="3" stroke-linecap="round"/>`).join("");
+ const nodes=N.map(n=>{const p=P[n.id],c=n.c||"var(--ink)";return `<g><rect x="${p.x+3}" y="${p.y+4}" width="${nw}" height="${nh}" rx="10" fill="var(--line)"/><rect x="${p.x}" y="${p.y}" width="${nw}" height="${nh}" rx="10" fill="var(--bg)" stroke="${c}" stroke-width="3"/><circle cx="${p.x+(narrow?12:16)}" cy="${p.y+nh/2}" r="${narrow?5:6}" fill="${c}"/><text x="${p.x+(narrow?23:30)}" y="${p.y+25}" font-size="${narrow&&W<420?13:14}" font-weight="700" fill="var(--ink)" style="stroke:var(--bg)">${n.a}</text><text x="${p.x+(narrow?23:30)}" y="${p.y+44}" font-size="13" fill="var(--mute)" style="stroke:var(--bg)">${n.b}</text></g>`}).join("");
+ s.setAttribute("viewBox",`0 0 ${W} ${H}`);
+ s.innerHTML=g+nodes;
+}};
+const b1=$("topo"),b2=$("topo2"),d1=mk(b1,N1),d2=mk(b2,N2);
+const ro=new ResizeObserver(()=>{d1();d2()});ro.observe(b1);ro.observe(b2);
+}
+</script>
+</body>
+</html>
